@@ -156,13 +156,13 @@ func (f *File) ElevationAt(lat, lon float64) (int16, int, error) {
 		}
 		minLat, _ := strconv.ParseFloat(name[1:3], 64)
 		minLon, _ := strconv.ParseFloat(name[4:7], 64)
-		if "N" == name[:1] && (minLat > lat || minLat+1 <= lat) {
+		if name[:1] == "N" && (minLat > lat || minLat+1 <= lat) {
 			return 0, 0, ErrorOutOfRange
-		} else if "S" == name[:1] && (minLat > lat*-1 || minLat+1 <= lat*-1) {
+		} else if name[:1] == "S" && (minLat > lat*-1 || minLat+1 <= lat*-1) {
 			return 0, 0, ErrorOutOfRange
-		} else if "E" == name[3:4] && (minLon > lon || minLon+1 <= lon) {
+		} else if name[3:4] == "E" && (minLon > lon || minLon+1 <= lon) {
 			return 0, 0, ErrorOutOfRange
-		} else if "W" == name[3:4] && (minLon > lon*-1 || minLon+1 <= lon*-1) {
+		} else if name[3:4] == "W" && (minLon > lon*-1 || minLon+1 <= lon*-1) {
 			return 0, 0, ErrorOutOfRange
 		}
 	}
